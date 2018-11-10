@@ -19,7 +19,7 @@ to run the code enter:
 
 <h3>Serial Code Shell Script</h3>
 
-In order to run the coode in exactly the same environment as the parallel code a shell script has been created - [see here](../blob/master/serial/runSerial.sh)
+In order to run the coode in exactly the same environment as the parallel code a shell script has been created - [see here](../master/serial/runSerial.sh)
 
 the script takes two arguments which are described below:
 
@@ -53,14 +53,14 @@ The reason that two scripts have been created is to allow the user to see the re
 - $3: The length of the array that you would like the code to use.
 
 <h4><u>Run Parallel Code No Binding</u></h4>
-Direct link to the shell script - [See here](../blob/master/parallel/runParallel.sh)
+Direct link to the shell script - [See here](../master/parallel/runParallel.sh)
 
 to run the code using the shell script then enter the following command:
 
 `qrsh -l h_rt=00:05:00 -cwd -V -pe smp 16 -l exclusive=true ./runParallel.sh 4 10 200000`
 
 <h4><u>Run Parallel Code with Binding,/u></h4>
-Direct link to the shell script - [See here](../blob/master/parallel/runParallel-binding.sh)
+Direct link to the shell script - [See here](../master/parallel/runParallel-binding.sh)
 
 to run the code using the shell script then enter the following command:
 

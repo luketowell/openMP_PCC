@@ -10,7 +10,7 @@ int main(int argc, char **argv)
         int i;
 
         //declaration of clocks
-        double init_start, init_end, coef_start, coef_end, start, end;
+        double init_start, init_end, sum_start, sum_end, coef_start, coef_end, start, end;
 
         //declare all doubles
         double *a, *b;
@@ -29,10 +29,13 @@ int main(int argc, char **argv)
         }
         init_end = omp_get_wtime();
 
+        sum_start = omp_get_wtime();
+        #pragma omp parallel for default(none) private(i) shared(length_of_array, a, b) reduction(+:sum_of_a, sum_of_b) 
         for (i = 0; i < length_of_array; i++){
                 sum_of_a += a[i];
                 sum_of_b += b[i];
         }
+        sum_end = omp_get_wtime();
 
         //work out the mean
         mean_of_a = sum_of_a / length_of_array;
@@ -57,6 +60,7 @@ int main(int argc, char **argv)
 
         time_to_run = (end - start);
         printf("The time to initialise arrays was %.5f ms \n", ((init_end-init_start) *1000));
+        printf("The time to work out the sum is: %.5f ms \n", ((sum_end-sum_start) *1000));
         printf("The time to work out coefficient was %.5f ms \n", ((coef_end-coef_start)*1000));
         printf("The time taken to execute the whole program = %.5f ms \n", (time_to_run*1000));
         printf("The Pearson correlation coefficient is: %.4f \n", correlationCoefficient);

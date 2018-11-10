@@ -60,7 +60,7 @@ to run the code using the shell script then enter the following command:
 
 `qrsh -l h_rt=00:05:00 -cwd -V -pe smp 16 -l exclusive=true ./runParallel.sh 4 10 200000`
 
-<h4><u>Run Parallel Code with Binding,/u></h4>
+<h4><u>Run Parallel Code with Binding</u></h4>
   
 Direct link to the shell script - [see here](../master/parallel/runParallel-binding.sh)
 

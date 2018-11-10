@@ -10,7 +10,7 @@ int main(int argc, char **argv)
         int i;
 
         //declaration of clocks
-        double start, end;
+        double init_start, init_end, start, end;
 
         //declare all doubles
         double *a, *b;
@@ -19,14 +19,15 @@ int main(int argc, char **argv)
         //allocate memory to the arrays
         a = (double *) malloc(length_of_array * sizeof(a));
         b = (double *) malloc(length_of_array * sizeof(b));
-
-        start= omp_get_wtime();
+        start =omp_get_wtime();
+        init_start= omp_get_wtime();
         #pragma omp parallel for default(none) private(i) shared(length_of_array, a, b)
         //initialisation of the value arrays
         for (i = 0; i < length_of_array; i++){
                 a[i] = sin(i);
                 b[i] = sin(i+5);
         }
+        init_end = omp_get_wtime();
 
 
         for (i = 0; i < length_of_array; i++){
@@ -53,6 +54,7 @@ int main(int argc, char **argv)
         end = omp_get_wtime();
 
         time_to_run = (end - start);
+        printf("The time to initialise arrays was %.5f ms \n", ((init_end-init_start) *1000));
         printf("The time taken to execute the whole program = %.5f ms \n", (time_to_run*1000));
         printf("The Pearson correlation coefficient is: %.4f \n", correlationCoefficient);
 

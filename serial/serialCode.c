@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include <time.h>
-#include <sys/time.h>
-
-double get_wall_time();
-
+#include <omp.h>
 
 int main(int argc, char **argv)
 {

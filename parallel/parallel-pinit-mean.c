@@ -39,9 +39,6 @@ int main(int argc, char **argv)
         //work out the mean
         //#pragma omp parallel for default(none) private(i) shared(length_of_array, sum_of_a, sum_of_b) reduction(+:mean_of_a, mean_of_b)
 
-        printf("print the mean of a = %.10f \n",mean_of_a);
-        printf("print the mean of b = %.10f \n",mean_of_b);
-
         //perform work out coefficients
         coef_start = omp_get_wtime();
         #pragma omp parallel for default(none) shared(length_of_array, a, mean_of_a, b, mean_of_b) private(i) reduction(+:sum_of_sqrd_a_a_bar, sum_of_sqrd_b_b_bar, sum_of_a_times_b)
